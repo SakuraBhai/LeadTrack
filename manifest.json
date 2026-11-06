@@ -1,0 +1,10 @@
+{
+  "name": "LeadTrack Pro — Number Management & 30-Day Tracking",
+  "short_name": "LeadTrack Pro",
+  "description": "Mobile-friendly Number Management & Tracking App with User & Agent sections, OCR Screenshot Extraction, and 30-Day IndexedDB History.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary"
+}

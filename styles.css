@@ -1,0 +1,1334 @@
+/* ==========================================================================
+   LEAD TRACK — GAIN30 Dark Emerald Theme (100% Mobile & Desktop Responsive)
+   ========================================================================== */
+
+:root,
+[data-theme="dark"] {
+  --bg-page: #060d09;
+  --bg-vignette:
+    radial-gradient(circle at 0% 35%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 100% 35%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    #060d09;
+
+  --card-bg: #0c1611;
+  --card-inner: #08100c;
+  --card-hero-bg: linear-gradient(135deg, #0d1d14 0%, #122a1e 50%, #0b1610 100%);
+  --card-border: rgba(34, 197, 94, 0.16);
+  --card-border-strong: rgba(34, 197, 94, 0.34);
+
+  --text-white: #f8fafc;
+  --text-sub: #86968e;
+  --text-muted: #5a6b62;
+
+  --green-bright: #22c55e;
+  --green-neon: #4ade80;
+  --green-soft-bg: rgba(34, 197, 94, 0.14);
+  --green-soft-border: rgba(34, 197, 94, 0.32);
+
+  --blue-soft-bg: rgba(14, 165, 233, 0.15);
+  --blue-soft-border: rgba(56, 189, 248, 0.35);
+  --blue-text: #38bdf8;
+
+  --red-soft-bg: rgba(244, 63, 94, 0.14);
+  --red-soft-border: rgba(251, 113, 133, 0.35);
+  --red-text: #fb7185;
+
+  --amber-soft-bg: rgba(245, 158, 11, 0.14);
+  --amber-soft-border: rgba(251, 191, 36, 0.35);
+  --amber-text: #fbbf24;
+}
+
+[data-theme="light"] {
+  --bg-page: #eef5f0;
+  --bg-vignette:
+    radial-gradient(circle at 0% 35%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 100% 35%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    #eef5f0;
+
+  --card-bg: #ffffff;
+  --card-inner: #f3f8f5;
+  --card-hero-bg: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%);
+  --card-border: rgba(16, 185, 129, 0.22);
+  --card-border-strong: rgba(16, 185, 129, 0.42);
+
+  --text-white: #062216;
+  --text-sub: #476356;
+  --text-muted: #6b8578;
+
+  --green-bright: #16a34a;
+  --green-neon: #15803d;
+  --green-soft-bg: rgba(22, 163, 74, 0.12);
+  --green-soft-border: rgba(22, 163, 74, 0.3);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-vignette);
+  background-attachment: fixed;
+  color: var(--text-white);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+}
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.22);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.4);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==================== CENTERED APP SHELL (GAIN30 COLUMN) ==================== */
+.app-shell {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 14px 12px calc(98px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==================== 1. TOP BRAND CARD ==================== */
+.top-brand-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.brand-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  color: var(--green-neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon-box svg {
+  width: 20px;
+  height: 20px;
+}
+
+.brand-meta {
+  min-width: 0;
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.saved-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--green-soft-bg);
+  border: 1px solid var(--green-soft-border);
+  color: var(--green-neon);
+  font-size: 0.65rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.saved-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green-neon);
+}
+
+.brand-sub {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brand-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-install-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 13px;
+  border-radius: 11px;
+  border: none;
+  background: var(--green-bright);
+  color: #04210f;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.btn-install-green:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-install-green:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-install-green svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.btn-gear-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  border: 1px solid var(--card-border);
+  background: #122119;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .btn-gear-icon {
+  background: var(--card-inner);
+}
+
+.btn-gear-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ==================== 2. 30-DAY DATE STEPPER BAR ==================== */
+.date-stepper-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 7px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.stepper-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #122119;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .stepper-arrow {
+  background: var(--card-inner);
+}
+
+.stepper-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.stepper-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.day-counter-pill {
+  padding: 4px 8px;
+  border-radius: 7px;
+  background: var(--green-soft-bg);
+  border: 1px solid var(--green-soft-border);
+  color: var(--green-neon);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.stepper-date-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+}
+
+.hidden-date-select {
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  cursor: pointer;
+  width: 20px;
+  opacity: 0.75;
+}
+
+.hidden-date-select option {
+  background: #0c1611;
+  color: #ffffff;
+}
+
+.jump-today-pill {
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--green-neon);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ==================== VIEWS & GAIN30 CARDS ==================== */
+.views-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.view-section {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.view-section.active {
+  display: flex;
+}
+
+.g-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.hero-goal-card {
+  background: var(--card-hero-bg);
+  border-color: rgba(34, 197, 94, 0.24);
+}
+
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hero-kicker {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-sub);
+  text-transform: uppercase;
+}
+
+.btn-outline-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.38);
+  color: var(--green-neon);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero-big-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: -2px;
+  flex-wrap: wrap;
+}
+
+.hero-big-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero-unit {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.hero-gain-pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--green-soft-bg);
+  border: 1px solid var(--green-soft-border);
+  color: var(--green-neon);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.hero-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.73rem;
+  color: var(--text-sub);
+}
+
+.hero-pct-green {
+  color: var(--green-neon);
+  font-weight: 700;
+}
+
+.hero-progress-bar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #16a34a, #4ade80);
+  transition: width 0.3s ease;
+}
+
+.hero-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: -6px;
+}
+
+/* 4 Mini Stat Boxes inside Hero Card */
+.hero-four-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.hero-mini-box {
+  background: var(--card-inner);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 9px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.hero-mini-box.highlighted-green {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.32);
+}
+
+.mini-label {
+  font-size: 0.64rem;
+  color: var(--text-sub);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-val {
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.mini-val small {
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--text-sub);
+}
+
+.green-text {
+  color: var(--green-neon);
+}
+
+/* ==================== CIRCULAR RING GAUGES CARD ==================== */
+.g-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.g-card-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.g-card-sub {
+  font-size: 0.71rem;
+  color: var(--text-sub);
+  margin-top: 2px;
+}
+
+.g-link-btn {
+  background: transparent;
+  border: none;
+  color: var(--green-neon);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rings-two-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ring-inner-box {
+  background: var(--card-inner);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 14px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.ring-svg-wrap {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-svg {
+  width: 104px;
+  height: 104px;
+}
+
+.ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 8;
+}
+
+[data-theme="light"] .ring-track {
+  stroke: rgba(16, 185, 129, 0.15);
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--green-neon);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 60px 60px;
+  transition: stroke-dashoffset 0.35s ease;
+}
+
+.ring-top-dot {
+  fill: #a3e635;
+  filter: drop-shadow(0 0 6px #4ade80);
+}
+
+.ring-center-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ring-center-text strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.ring-center-text span {
+  font-size: 0.65rem;
+  color: var(--text-sub);
+}
+
+.ring-footer-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  font-size: 0.68rem;
+  flex-wrap: wrap;
+}
+
+.ring-foot-title {
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.ring-foot-green {
+  color: var(--green-neon);
+  font-weight: 600;
+}
+
+/* ==================== TWO CHECKLIST CARDS SIDE BY SIDE ==================== */
+.checklist-two-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.checklist-card {
+  cursor: pointer;
+  gap: 8px;
+  padding: 14px;
+}
+
+.checklist-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checklist-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--green-neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checklist-icon-box.blue-tint {
+  background: var(--blue-soft-bg);
+  border-color: var(--blue-soft-border);
+  color: var(--blue-text);
+}
+
+.checklist-icon-box svg {
+  width: 17px;
+  height: 17px;
+}
+
+.count-ratio-pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--green-soft-bg);
+  border: 1px solid var(--green-soft-border);
+  color: var(--green-neon);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.checklist-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.checklist-sub {
+  font-size: 0.68rem;
+  color: var(--text-sub);
+  margin-top: -2px;
+}
+
+.mini-progress-track {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green-bright);
+  transition: width 0.3s ease;
+}
+
+/* ==================== BOTTOM QUICK STRIP CARD ==================== */
+.quick-strip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.quick-strip-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quick-strip-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  padding: 6px 11px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.chip-green {
+  background: var(--green-soft-bg);
+  border-color: var(--green-soft-border);
+  color: var(--green-neon);
+}
+
+.chip-blue {
+  background: var(--blue-soft-bg);
+  border-color: var(--blue-soft-border);
+  color: var(--blue-text);
+}
+
+.chip-red {
+  background: var(--red-soft-bg);
+  border-color: var(--red-soft-border);
+  color: var(--red-text);
+}
+
+.chip-amber {
+  background: var(--amber-soft-bg);
+  border-color: var(--amber-soft-border);
+  color: var(--amber-text);
+}
+
+.chip-muted {
+  background: #13221a;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-sub);
+}
+
+[data-theme="light"] .chip-muted {
+  background: var(--card-inner);
+}
+
+/* ==================== USER & AGENT LIST SECTIONS ==================== */
+.section-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-section-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.status-tab {
+  padding: 9px 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--card-inner);
+  color: var(--text-sub);
+  font-size: 0.73rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.status-tab.active {
+  background: var(--green-soft-bg);
+  border-color: var(--green-soft-border);
+  color: var(--green-neon);
+}
+
+.tab-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+
+.search-bulk-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.g-search-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-inner);
+  font-size: 16px; /* Prevents iOS Safari zoom on input focus */
+  color: var(--text-white);
+}
+
+.g-search-input:focus {
+  outline: none;
+  border-color: var(--green-neon);
+}
+
+.bulk-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkbox-label input,
+.number-select-cb {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--green-bright);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bulk-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* Number Rows */
+.number-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-sub);
+}
+
+.number-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.number-card.status-positive {
+  border-left: 3px solid var(--green-neon);
+}
+
+.number-card.status-negative {
+  border-left: 3px solid var(--red-text);
+}
+
+.number-card.status-pending {
+  border-left: 3px solid var(--amber-text);
+}
+
+.number-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.phone-number-text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.status-badge.positive {
+  background: var(--green-soft-bg);
+  color: var(--green-neon);
+}
+
+.status-badge.negative {
+  background: var(--red-soft-bg);
+  color: var(--red-text);
+}
+
+.status-badge.pending {
+  background: var(--amber-soft-bg);
+  color: var(--amber-text);
+}
+
+.number-meta-row {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.number-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.status-tri-group {
+  display: inline-flex;
+  background: var(--card-inner);
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 3px;
+}
+
+.status-action-btn {
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  cursor: pointer;
+  text-align: center;
+}
+
+.status-action-btn.btn-pos.active {
+  background: var(--green-soft-bg);
+  color: var(--green-neon);
+  border-color: var(--green-soft-border);
+}
+
+.status-action-btn.btn-neg.active {
+  background: var(--red-soft-bg);
+  color: var(--red-text);
+  border-color: var(--red-soft-border);
+}
+
+.status-action-btn.btn-pen.active {
+  background: var(--amber-soft-bg);
+  color: var(--amber-text);
+  border-color: var(--amber-soft-border);
+}
+
+.card-utility-btns {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.icon-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--card-inner);
+  color: var(--text-sub);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.empty-state {
+  background: var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: 16px;
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-sub);
+  font-size: 0.84rem;
+}
+
+/* ==================== FLOATING BOTTOM DOCK NAV ==================== */
+.bottom-dock-nav {
+  position: fixed;
+  bottom: max(10px, env(safe-area-inset-bottom, 10px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 556px;
+  z-index: 60;
+  background: rgba(11, 21, 16, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 197, 94, 0.24);
+  border-radius: 18px;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.72);
+}
+
+[data-theme="light"] .bottom-dock-nav {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border-radius: 13px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dock-item svg {
+  width: 18px;
+  height: 18px;
+}
+
+.dock-item.active {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.32);
+  color: var(--green-neon);
+}
+
+/* ==================== MODALS & TOAST ==================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(3, 8, 5, 0.82);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.modal-dialog {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-strong);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-sub);
+  font-size: 1.15rem;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-footer {
+  padding: 12px 18px;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.ocr-upload-zone {
+  border: 1px dashed var(--card-border-strong);
+  border-radius: 14px;
+  padding: 24px 16px;
+  text-align: center;
+  background: var(--card-inner);
+}
+
+.upload-zone-content p {
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  margin: 4px 0 14px;
+}
+
+.mono-textarea {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: calc(100% - 32px);
+  max-width: 420px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-strong);
+  border-left: 3px solid var(--green-neon);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* ==================== MOBILE RESPONSIVE OPTIMIZATIONS ==================== */
+@media (max-width: 520px) {
+  .app-shell {
+    padding: 10px 10px calc(94px + env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+  }
+
+  .top-brand-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .brand-icon-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-title {
+    font-size: 0.92rem;
+  }
+
+  .brand-sub {
+    font-size: 0.65rem;
+  }
+
+  .btn-install-green {
+    padding: 7px 11px;
+    font-size: 0.74rem;
+  }
+
+  .btn-gear-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .g-card {
+    padding: 14px;
+    border-radius: 16px;
+    gap: 11px;
+  }
+
+  .hero-big-val {
+    font-size: 1.95rem;
+  }
+
+  .ring-svg-wrap,
+  .ring-svg {
+    width: 92px;
+    height: 92px;
+  }
+
+  .ring-center-text strong {
+    font-size: 1.05rem;
+  }
+
+  /* Full-width thumb-friendly status buttons on mobile number cards */
+  .number-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .number-card-left {
+    width: 100%;
+  }
+
+  .number-card-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .status-tri-group {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .status-action-btn {
+    padding: 7px 4px;
+    font-size: 0.72rem;
+  }
+
+  /* Bottom-sheet style modal on mobile */
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-dialog {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-four-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .jump-today-pill {
+    padding: 4px 6px;
+    font-size: 0.64rem;
+  }
+}

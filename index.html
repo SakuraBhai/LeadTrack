@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#060d09" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>LEAD TRACK — 30-Day Number Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css?v=60" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+    }
+    if ('caches' in window) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- ==================== 1. TOP BRAND BAR (GAIN30 STYLE) ==================== -->
+    <header class="top-brand-card">
+      <div class="brand-left">
+        <div class="brand-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18" />
+            <path d="M7 16V12" />
+            <path d="M12 16V8" />
+            <path d="M17 16v-5" />
+            <path d="m7 9 5-4 5 2" />
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <div class="brand-title-row">
+            <span class="brand-title" id="topbar-title">LEAD TRACK</span>
+            <span class="saved-pill">
+              <span class="saved-dot"></span>
+              Saved
+            </span>
+          </div>
+          <div class="brand-sub">User &amp; Agent OCR · 30 Days History</div>
+        </div>
+      </div>
+
+      <div class="brand-right">
+        <button type="button" class="btn-install-green" id="header-btn-scan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          <span>Scan OCR</span>
+        </button>
+
+        <button type="button" class="btn-gear-icon" id="btn-theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================== 2. 30-DAY DATE STEPPER BAR ==================== -->
+    <div class="date-stepper-card">
+      <button type="button" class="stepper-arrow" id="btn-prev-day" aria-label="Previous Day">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+
+      <div class="stepper-center">
+        <span class="day-counter-pill" id="day-counter-pill">DAY 30 / 30</span>
+        <span class="stepper-date-text" id="stepper-date-text">Today</span>
+        <select id="global-date-select" class="hidden-date-select" aria-label="Select Date"></select>
+        <button type="button" class="jump-today-pill" id="btn-return-today">Jump to Today</button>
+      </div>
+
+      <button type="button" class="stepper-arrow" id="btn-next-day" aria-label="Next Day">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+
+    <main id="main-content" class="views-wrap">
+      <!-- =====================================================================
+           VIEW 1: DASHBOARD (EXACT GAIN30 CARD LAYOUT)
+           ===================================================================== -->
+      <section class="view-section active" id="view-dashboard">
+        <!-- Hero Goal / Overview Card -->
+        <div class="g-card hero-goal-card">
+          <div class="hero-top-row">
+            <span class="hero-kicker">30-DAY LEAD GOAL &amp; TRACKER</span>
+            <button type="button" class="btn-outline-pill" id="hero-btn-log-number">
+              + Add Number
+            </button>
+          </div>
+
+          <div class="hero-big-metric-row">
+            <strong class="hero-big-val" id="dash-combined-total">0</strong>
+            <span class="hero-unit">leads</span>
+            <span class="hero-gain-pill" id="dash-today-gain-pill">+0 today</span>
+          </div>
+
+          <div class="hero-progress-meta">
+            <span>User: <strong id="dash-user-total">0</strong></span>
+            <span class="hero-pct-green" id="dash-positive-rate">0% Positive</span>
+            <span>Agent: <strong id="dash-agent-total">0</strong></span>
+          </div>
+
+          <div class="hero-progress-bar">
+            <div class="hero-progress-fill" id="dash-progress-fill" style="width: 0%"></div>
+          </div>
+
+          <div class="hero-scale-labels">
+            <span>0%</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100%</span>
+          </div>
+
+          <!-- 4 Sub-stat Boxes inside Hero Card -->
+          <div class="hero-four-grid">
+            <div class="hero-mini-box" data-goto-user-filter="all">
+              <span class="mini-label">User Total</span>
+              <strong class="mini-val"><span id="Sub-user-total">0</span> <small>num</small></strong>
+            </div>
+
+            <div class="hero-mini-box highlighted-green" data-goto-user-filter="positive">
+              <span class="mini-label">Total Positive</span>
+              <strong class="mini-val green-text">+<span id="dash-combined-positive">0</span></strong>
+            </div>
+
+            <div class="hero-mini-box" data-goto-user-filter="negative">
+              <span class="mini-label">Total Negative</span>
+              <strong class="mini-val"><span id="dash-combined-negative">0</span></strong>
+            </div>
+
+            <div class="hero-mini-box" data-goto-user-filter="pending">
+              <span class="mini-label">Pending Queue</span>
+              <strong class="mini-val"><span id="dash-combined-pending">0</span></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Circular Ring Gauges Card (User vs Agent Intake) -->
+        <div class="g-card">
+          <div class="g-card-header">
+            <div>
+              <h2 class="g-card-title">User &amp; Agent Status Breakdown</h2>
+              <p class="g-card-sub">Auto-calculated from your User &amp; Agent number lists</p>
+            </div>
+            <button type="button" class="g-link-btn" data-goto-module="user">
+              Open Lists →
+            </button>
+          </div>
+
+          <div class="rings-two-grid">
+            <!-- User Ring Box -->
+            <div class="ring-inner-box" data-goto-module="user">
+              <div class="ring-svg-wrap">
+                <svg class="ring-svg" viewBox="0 0 120 120">
+                  <circle class="ring-track" cx="60" cy="60" r="46" />
+                  <circle class="ring-fill" id="user-ring-circle" cx="60" cy="60" r="46" stroke-dasharray="289" stroke-dashoffset="289" />
+                  <circle class="ring-top-dot" cx="60" cy="14" r="4" />
+                </svg>
+                <div class="ring-center-text">
+                  <strong id="dash-user-positive">0</strong>
+                  <span>/ <span id="ring-user-total">0</span> pos</span>
+                </div>
+              </div>
+              <div class="ring-footer-row">
+                <span class="ring-foot-title">User Section</span>
+                <span class="ring-foot-green"><span id="dash-user-pending">0</span> pending · <span id="dash-user-negative">0</span> neg</span>
+              </div>
+            </div>
+
+            <!-- Agent Ring Box -->
+            <div class="ring-inner-box" data-goto-module="agent">
+              <div class="ring-svg-wrap">
+                <svg class="ring-svg" viewBox="0 0 120 120">
+                  <circle class="ring-track" cx="60" cy="60" r="46" />
+                  <circle class="ring-fill" id="agent-ring-circle" cx="60" cy="60" r="46" stroke-dasharray="289" stroke-dashoffset="289" />
+                  <circle class="ring-top-dot" cx="60" cy="14" r="4" />
+                </svg>
+                <div class="ring-center-text">
+                  <strong id="dash-agent-positive">0</strong>
+                  <span>/ <span id="ring-agent-total">0</span> pos</span>
+                </div>
+              </div>
+              <div class="ring-footer-row">
+                <span class="ring-foot-title">Agent Section</span>
+                <span class="ring-foot-green"><span id="dash-agent-pending">0</span> pending · <span id="dash-agent-negative">0</span> neg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Side-by-Side Module Checklist Cards -->
+        <div class="checklist-two-grid">
+          <!-- User Module Card -->
+          <div class="g-card checklist-card" data-goto-module="user">
+            <div class="checklist-top">
+              <div class="checklist-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
+              </div>
+              <span class="count-ratio-pill" id="user-ratio-pill">0 / 0</span>
+            </div>
+            <h3 class="checklist-title">User Numbers</h3>
+            <p class="checklist-sub"><span id="dash-user-today-imports">0</span> today · <span id="dash-user-30d-imports">0</span> in 30d</p>
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="user-mini-bar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Agent Module Card -->
+          <div class="g-card checklist-card" data-goto-module="agent">
+            <div class="checklist-top">
+              <div class="checklist-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                </svg>
+              </div>
+              <span class="count-ratio-pill" id="agent-ratio-pill">0 / 0</span>
+            </div>
+            <h3 class="checklist-title">Agent Numbers</h3>
+            <p class="checklist-sub"><span id="dash-agent-today-imports">0</span> today · <span id="dash-agent-30d-imports">0</span> in 30d</p>
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="agent-mini-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Quick OCR Strip Card (Like Hydration Tracker Card) -->
+        <div class="g-card quick-strip-card">
+          <div class="quick-strip-top">
+            <div class="quick-strip-left">
+              <div class="checklist-icon-box blue-tint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                  <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                  <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                  <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="checklist-title">OCR Screenshot Importer</h3>
+                <p class="checklist-sub">Extract numbers from Gallery screenshots</p>
+              </div>
+            </div>
+
+            <div class="quick-strip-btns">
+              <button type="button" class="chip-btn chip-green" id="quick-btn-user-ocr">+ User OCR</button>
+              <button type="button" class="chip-btn chip-blue" id="quick-btn-agent-ocr">+ Agent OCR</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 2: USER SECTION
+           ===================================================================== -->
+      <section class="view-section" id="view-user">
+        <div class="g-card">
+          <div class="section-head-row">
+            <div>
+              <span class="hero-kicker">MODULE 01 · ISOLATED STORAGE</span>
+              <h2 class="g-card-title">User Number List (<span id="sidebar-user-count">0</span>)</h2>
+            </div>
+            <div class="quick-strip-btns">
+              <button type="button" class="btn-outline-pill" id="btn-user-import-ocr">+ Scan OCR</button>
+              <button type="button" class="chip-btn chip-muted" id="btn-user-add-manual">+ Manual</button>
+              <button type="button" class="chip-btn chip-muted" id="btn-user-export-csv">CSV</button>
+            </div>
+          </div>
+
+          <div class="status-section-tabs" id="user-status-tabs">
+            <button type="button" class="status-tab active" data-user-tab="all">
+              All <span class="tab-count" id="user-count-all">0</span>
+            </button>
+            <button type="button" class="status-tab tab-pending" data-user-tab="pending">
+              Pending <span class="tab-count" id="user-count-pending">0</span>
+            </button>
+            <button type="button" class="status-tab tab-positive" data-user-tab="positive">
+              Positive <span class="tab-count" id="user-count-positive">0</span>
+            </button>
+            <button type="button" class="status-tab tab-negative" data-user-tab="negative">
+              Negative <span class="tab-count" id="user-count-negative">0</span>
+            </button>
+          </div>
+
+          <div class="search-bulk-box">
+            <input
+              type="search"
+              id="user-search-input"
+              class="g-search-input"
+              placeholder="Search User mobile number..."
+            />
+
+            <div class="bulk-action-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="user-select-all" />
+                <span>Select All (<strong id="user-selected-count">0</strong>)</span>
+              </label>
+              <div class="bulk-buttons">
+                <button type="button" class="chip-btn chip-green" data-user-bulk="positive">Positive</button>
+                <button type="button" class="chip-btn chip-red" data-user-bulk="negative">Negative</button>
+                <button type="button" class="chip-btn chip-amber" data-user-bulk="pending">Pending</button>
+                <button type="button" class="chip-btn chip-red" data-user-bulk="delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="user-list-container" class="number-list-container"></div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 3: AGENT SECTION
+           ===================================================================== -->
+      <section class="view-section" id="view-agent">
+        <div class="g-card">
+          <div class="section-head-row">
+            <div>
+              <span class="hero-kicker">MODULE 02 · ISOLATED STORAGE</span>
+              <h2 class="g-card-title">Agent Number List (<span id="sidebar-agent-count">0</span>)</h2>
+            </div>
+            <div class="quick-strip-btns">
+              <button type="button" class="btn-outline-pill" id="btn-agent-import-ocr">+ Scan OCR</button>
+              <button type="button" class="chip-btn chip-muted" id="btn-agent-add-manual">+ Manual</button>
+              <button type="button" class="chip-btn chip-muted" id="btn-agent-export-csv">CSV</button>
+            </div>
+          </div>
+
+          <div class="status-section-tabs" id="agent-status-tabs">
+            <button type="button" class="status-tab active" data-agent-tab="all">
+              All <span class="tab-count" id="agent-count-all">0</span>
+            </button>
+            <button type="button" class="status-tab tab-pending" data-agent-tab="pending">
+              Pending <span class="tab-count" id="agent-count-pending">0</span>
+            </button>
+            <button type="button" class="status-tab tab-positive" data-agent-tab="positive">
+              Positive <span class="tab-count" id="agent-count-positive">0</span>
+            </button>
+            <button type="button" class="status-tab tab-negative" data-agent-tab="negative">
+              Negative <span class="tab-count" id="agent-count-negative">0</span>
+            </button>
+          </div>
+
+          <div class="search-bulk-box">
+            <input
+              type="search"
+              id="agent-search-input"
+              class="g-search-input"
+              placeholder="Search Agent mobile number..."
+            />
+
+            <div class="bulk-action-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="agent-select-all" />
+                <span>Select All (<strong id="agent-selected-count">0</strong>)</span>
+              </label>
+              <div class="bulk-buttons">
+                <button type="button" class="chip-btn chip-green" data-agent-bulk="positive">Positive</button>
+                <button type="button" class="chip-btn chip-red" data-agent-bulk="negative">Negative</button>
+                <button type="button" class="chip-btn chip-amber" data-agent-bulk="pending">Pending</button>
+                <button type="button" class="chip-btn chip-red" data-agent-bulk="delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="agent-list-container" class="number-list-container"></div>
+      </section>
+    </main>
+
+    <!-- ==================== FLOATING BOTTOM DOCK NAV (GAIN30 STYLE) ==================== -->
+    <nav class="bottom-dock-nav" aria-label="Main Navigation">
+      <button type="button" class="dock-item active" data-nav="dashboard" id="nav-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+        <span>Dashboard</span>
+      </button>
+
+      <button type="button" class="dock-item" data-nav="user" id="nav-user">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+        </svg>
+        <span>User List</span>
+      </button>
+
+      <button type="button" class="dock-item" data-nav="agent" id="nav-agent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+        </svg>
+        <span>Agent List</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 1: OCR SCREENSHOT IMPORT
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="modal-ocr-import" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="hero-kicker" id="ocr-modal-badge">USER</span>
+          <h3 id="ocr-modal-title">OCR Screenshot Scanner</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal="modal-ocr-import">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="ocr-upload-zone" id="ocr-dropzone">
+          <input
+            type="file"
+            id="ocr-file-input"
+            accept="image/*"
+            multiple
+            class="file-input-hidden"
+          />
+          <div class="upload-zone-content">
+            <h4>Select Screenshot from Gallery</h4>
+            <p>Extract mobile numbers automatically via OCR.</p>
+            <button type="button" class="btn-install-green" id="btn-trigger-file-input">
+              Choose Gallery Image
+            </button>
+          </div>
+        </div>
+
+        <div class="ocr-progress-box hidden" id="ocr-progress-box">
+          <div class="ocr-progress-header">
+            <span id="ocr-progress-stage">Scanning screenshot...</span>
+            <strong id="ocr-progress-pct">0%</strong>
+          </div>
+          <div class="hero-progress-bar">
+            <div class="hero-progress-fill" id="ocr-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="ocr-results-panel hidden" id="ocr-results-panel">
+          <h4>Extracted Numbers (<span id="ocr-extracted-count">0</span>)</h4>
+          <textarea
+            id="ocr-extracted-textarea"
+            class="g-search-input mono-textarea"
+            rows="5"
+            placeholder="Extracted mobile numbers..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="chip-btn chip-muted" data-close-modal="modal-ocr-import">Cancel</button>
+        <button type="button" class="btn-install-green" id="btn-confirm-ocr-import" disabled>
+          Save Numbers
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: MANUAL NUMBER ENTRY
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="modal-manual-entry" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="hero-kicker" id="manual-modal-badge">USER</span>
+          <h3 id="manual-modal-title">Add Mobile Number</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal="modal-manual-entry">✕</button>
+      </div>
+
+      <form id="form-manual-entry" class="modal-body">
+        <input type="hidden" id="manual-module-input" value="user" />
+        <label for="manual-numbers-textarea" class="mini-label">Enter Mobile Number(s):</label>
+        <textarea
+          id="manual-numbers-textarea"
+          class="g-search-input mono-textarea"
+          rows="4"
+          placeholder="9876543210"
+          required
+        ></textarea>
+
+        <div class="modal-footer">
+          <button type="button" class="chip-btn chip-muted" data-close-modal="modal-manual-entry">Cancel</button>
+          <button type="submit" class="btn-install-green">Save Number</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: EDIT NUMBER
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="modal-edit-number" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Edit Mobile Number</h3>
+        <button type="button" class="modal-close" data-close-modal="modal-edit-number">✕</button>
+      </div>
+
+      <form id="form-edit-number" class="modal-body">
+        <input type="hidden" id="edit-number-id" />
+        <input type="hidden" id="edit-number-module" />
+
+        <label for="edit-phone-input" class="mini-label">Mobile Number:</label>
+        <input type="text" id="edit-phone-input" class="g-search-input" required />
+
+        <label for="edit-status-select" class="mini-label">Status:</label>
+        <select id="edit-status-select" class="g-search-input">
+          <option value="pending">Pending</option>
+          <option value="positive">Positive</option>
+          <option value="negative">Negative</option>
+        </select>
+
+        <div class="modal-footer">
+          <button type="button" class="chip-btn chip-muted" data-close-modal="modal-edit-number">Cancel</button>
+          <button type="submit" class="btn-install-green">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script type="module" src="./app.js?v=50"></script>
+</body>
+</html>
